@@ -19,9 +19,18 @@ class Meal extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
 
     public function getImageUrlAttribute()
     {
-        return Storage::url('images/meals/' . $this->image);
+        return Storage::url($this->image_path);
+    }
+
+    public function getImagePathAttribute()
+    {
+        return 'images/meals/' . $this->image;
     }
 }
